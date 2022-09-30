@@ -9,26 +9,9 @@ export default class Hybrid extends React.Component {
     super(props);
     this.state = {
       isExpanded: false,
-      // toggleprops:this.state.isExpanded,
       msg: [],
       Emi: 0,
-      date: [],
       index: 0,
-      month: [
-        "jan",
-        "feb",
-        "march",
-        "apr",
-        "may",
-        "jume",
-        "july",
-        "aug",
-        "sep",
-        "oct",
-        "nov",
-        "dec",
-      ],
-      year: "",
       years: [],
     };
   }
@@ -36,9 +19,9 @@ export default class Hybrid extends React.Component {
     this.setState({
       msg: nextProps.msg,
       Emi: nextProps.EMI,
-      date: nextProps.date,
+      // date: nextProps.date,
       index: nextProps.month,
-      year: nextProps.year,
+      // year: nextProps.year,
       years: nextProps.years,
     });
   }

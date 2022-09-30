@@ -30,6 +30,7 @@ export default class Form extends React.Component {
     var P = e.target.Amt.value;
     var R = e.target.ROI.value;
     var n = e.target.Tenure.value;
+    e.target.dateinput.value = ""
     var r = R / 1200;
     var x = (1 + r) ** n;
     var q = P * r; // q is interest
@@ -51,34 +52,19 @@ export default class Form extends React.Component {
     var q1 = q;
     var m1 = this.state.month.toString();
     var ye1 = parseInt(this.state.year);
-    // this.setState({new:[...this.state.new, {
-    //   "remamt":temp,
-    // "interest":q1,
-    // "principal":y}]})
-    // this.setState({ date: e.target.date.value });
-    for (let i = 0; i < this.state.Duration; i++) {
-      
-      var f = y1 - parseInt(q1); // f is principal in emi amount
-      temp = Math.round(temp - f); // temp is remaining amount after certain emi
+    for (let i = 0; i <=this.state.Duration; i++) {
+      var f = y1 - parseInt(q1);
+      temp = Math.round(temp - (f + 1));
       console.log("the emi of " + i + "is" + temp, f, q1, y1);
       this.setState({ msg: P });
       console.log(this.state.new);
       if (temp < 0) {
         temp = 0;
       }
-      // this.setState({new2:[ {
-      //   "remamt":temp,
-      // "interest":q1,
-      // "principal":f}]})
-      // console.log(this.state.new2)
-      // this.setState({new:[ {
-      //   "remamt":temp,
-      // "interest":q1,
-      // "principal":f}]})
+      
       m1 = m1;
       var c = m1.concat("-", ye1);
       console.log(c);
-      // this.setState({mon:this.state.mon.push({c})})
      
       this.setState({
         new: this.state.new.push({
@@ -88,7 +74,6 @@ export default class Form extends React.Component {
           interest: q1,
           principal: f,
         }),
-        // years: this.state.years.push(ye1),
       });
       this.setState({ new2: this.state.new });
       n = parseInt(n);
@@ -120,62 +105,29 @@ export default class Form extends React.Component {
   Amtchanged = (e) => {
     this.setState({ Lamount: e.target.value });
     console.log(this.state.new);
-    // console.log(e.target.value, this.state.Lamount);
   };
   Roichanged = (e) => {
     this.setState({ Rate: e.target.value });
-    // console.log(e.target.value, this.state.Rate);
   };
   Tenurechanged = (e) => {
     this.setState({ Duration: e.target.value });
-    // console.log(e.target.value, this.state.Duration);
   };
   onChange = (e) => {
-    // e.preventDefault();
     console.log(e);
     var month1 = (e.getMonth() + 1).toString();
-
     var year1 = e.getFullYear().toString();
-    // for(var i=0;i<=60;i++){
-    // //   this.setState({mon:this.state.mon.push(a)})
-    // //   a++
     month1 = month1.toString();
-    //   year1=year1
     var dd = month1.concat("-", year1);
-    //   this.setState({mon:this.state.mon.push({c})})
-    //   month1=parseInt(month1)
-    //   month1++
-    //   if(month1>12){
-    //      month1=1
-    //      year1=parseInt(year1)+1
-    //      year1.toString()
-    //   }
-    //   console.log(a)
-    //   // this.setState({mon:this.state.mon.push(a)})
-    //   a=parseInt(a)
-
-    // }
-    // a=a.toString()
-    // if(parseInt(b)==2022){
-    //   b=parseInt(b)+1
-    // }
-    // console.log(a,b, this.state.mon)
-    // var c=a.concat("-",b)
-    // this.setState({mon:this.state.mon.push({c})})
     this.setState({ month: month1, year: year1, date: dd, calopen: false });
-    //  e.target.reset()
-    // console.log(this.state.date);
-    //    const filteredResults = userResults.filter(result => {
-    //     const newResultFormat = new Date(result.created_at).toLocaleString().split(",")[0]
-    //     const newCalDateFormat = calDate.toLocaleString().split(",")[0]
-    //     return newResultFormat === newCalDateFormat
-    // })
+    // reset()
   };
+  buttonclick=()=>{
+    window.location.reload()
+  }
   render() {
-    console.log(this.state.Lamount, this.state.date, this.state.mon);
+    console.log(this.state.Lamount, this.state.date, this.state.mon, this.state.Duration);
     return (
       <div id="buttons">
-        {/* <p id="LEC">Loan Emi Calculator</p> */}
         <form onSubmit={this.getemi} className="form">
           <p id="LEC" className="LEC" style={{color:"blueviolet" , fontSize:50, fontWeight :  550, fontStyle:"italic"}}>
             Loan Emi Calculator
@@ -185,9 +137,6 @@ export default class Form extends React.Component {
               Loan Amount :{" "}
               <input
                 id="LAmt" 
-                // style={{height: 35,
-                //   width: 70,
-                //   border: 1, borderColor:"solid-grey" }}
                 defaultValue={this.state.Lamount}
                 onChange={this.Amtchanged}
                 name="Amt"
@@ -211,25 +160,23 @@ export default class Form extends React.Component {
               <input
                 id="Tenure"
                 defaultValue={this.state.Duration}
+                placeholder="please enter in months"
                 onChange={this.Tenurechanged}
                 name="Tenure"
               ></input>
             </p>
           </div>
           <div>
-            {/* <Calendar onChange={this.onChange} defaultValue={this.state.date}/> */}
           </div>
-          {/* <div id="Check-it" > */}
           <div id="text4" className="text4">
            EMI Start Date :{" "}
           </div>
           <p>
-            {/* Start Date :{" "} */}
             <input
-              // onClick={this.calendar1}
               defaultValue={this.state.date}
-              // name="date"
               id="dateinput"
+              name="dateinput"
+              onClick={this.calendar1}
             ></input>
             <a onClick={this.calendar1}>
               <img src={calImg} height="40px" width={40} />
@@ -237,7 +184,6 @@ export default class Form extends React.Component {
             {this.state.calopen && (
               <Calendar onChange={this.onChange} defaultValue={new Date()} />
             )}
-            {/* </input><span><img src="./Images/google-calendar.png"/></span> */}
           </p>
 
           <button className="btn btn-primary" id="Check-it" type="submit">
@@ -246,6 +192,7 @@ export default class Form extends React.Component {
           <p style={{ color: "red" }}>
             Your Monthly EMI will be :{this.state.EMI}
           </p>
+          <a  onClick={this.buttonclick} className="btn btn-primary">RESET IT</a>
           {/* </div> */}
         </form>
         <div>
@@ -253,9 +200,9 @@ export default class Form extends React.Component {
             <Hybrid
               msg={this.state.new2}
               EMI={this.state.EMI}
-              date={this.state.date}
-              month={this.state.month}
-              year={this.state.year}
+              // date={this.state.date}
+              // month={this.state.month}
+              // year={this.state.year}
               years={this.state.mon}
             />
           </div>

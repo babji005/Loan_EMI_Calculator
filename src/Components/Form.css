@@ -1,0 +1,105 @@
+@media screen and (min-width: 150px) and (max-width: 2000px) {
+  body {
+    background-color: lightgreen;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+    /* margin-top: 20px; */
+  }
+  /* @media (max-width: 200px) { */
+
+  #buttons {
+    display: grid;
+    grid-template-columns: 500px 800px;
+    grid-template-rows: 100px 100px 100px 100px 50px;
+    grid-template-areas:
+      "LEC . "
+      "text1 . "
+      "text2 . "
+      "text3 . "
+      "text4 . "
+      "Check-it . ";
+    margin-left: 30px;
+    flex-direction: column;
+  }
+  #LEC {
+    grid-area: LEC;
+    justify-self: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: 550;
+    font-style: italic;
+    color: blueviolet;
+  }
+  #text1 {
+    grid-area: text1;
+    /* justify-self: center;
+    align-self: center; */
+    /* margin-right: 0; */
+  }
+  #text2 {
+    grid-area: text2;
+    /* justify-self: center; */
+    /* align-self: center; */
+  }
+  #text3 {
+    grid-area: text3;
+    /* justify-self: center;
+    align-self: center; */
+  }
+  #text4 {
+    grid-area: text4;
+  }
+
+  #LAmt {
+    height: 35px;
+    width: 70%;
+    border: 1px solid grey;
+    border-radius: 30px;
+  }
+  #ROI {
+    height: 35px;
+    width: 70%;
+    border: 1px solid grey;
+    border-radius: 30px;
+  }
+  #Tenure {
+    height: 35px;
+    width: 70%;
+    border: 1px solid grey;
+    border-radius: 30px;
+  }
+  #dateinput {
+    height: 35px;
+    width: 60%;
+    border: 1px solid grey;
+    border-radius: 30px;
+  }
+  #Check-it {
+    grid-area: Check-it;
+    justify-self: end;
+  }
+  #schedule {
+    grid-area: schedule;
+    justify-self: center;
+    align-self: center;
+    margin-top: 70px;
+    margin-left: 40px;
+    /* font-size: 50px; */
+    /* font-weight:  550; */
+    font-style: italic;
+    color: blueviolet;
+  }
+
+  /* .react-calendar__month-view__weekdays {
+    color: gray;
+  }
+  
+  .react-calendar__navigation button {
+    font-size: 1em;
+  }
+} */
+}

@@ -15,25 +15,24 @@ export default class Form extends React.Component {
       EMI: 0,
       msg: 1,
       year: new Date().getFullYear(),
-      month: new Date().getMonth(),
+      month: new Date().getMonth()+1,
       date: [],
       calopen: false,
       new: [],
       new2: [],
       mon: [],
-      years: [],
+      years: []
     };
   }
 
   getemi = (e) => {
     e.preventDefault();
-    var P = e.target.Amt.value;
-    var R = e.target.ROI.value;
-    var n = e.target.Tenure.value;
-    e.target.dateinput.value = ""
-    var r = R / 1200;
-    var x = (1 + r) ** n;
-    var q = P * r; // q is interest
+    var P = e.target.Amt.value;     // Loan amount P
+    var R = e.target.ROI.value;   /// rate of interest R .... for 10% of ROI r should be taken as 10/1200
+    var n = e.target.Tenure.value;   // tenure of loan in months n
+    var r = R / 1200;        // for 10% of ROI r should be taken as 10/1200      
+    var x = (1 + r) ** n;      ////  the actual formula to find loan emi is == P*(R/1200)*(1+r)**n/(((1+r)**n)-1)
+    var q = P * r;          // q is interest
     var z = q * x;
     var y = Math.round(z / (x - 1));
     this.setState({ EMI: y });
@@ -54,7 +53,7 @@ export default class Form extends React.Component {
     var ye1 = parseInt(this.state.year);
     for (let i = 0; i <=this.state.Duration; i++) {
       var f = y1 - parseInt(q1);
-      temp = Math.round(temp - (f + 1));
+      temp = Math.round(temp - (f + 1));     // this. will be the remaining amount after that emi
       console.log("the emi of " + i + "is" + temp, f, q1, y1);
       this.setState({ msg: P });
       console.log(this.state.new);
@@ -75,7 +74,7 @@ export default class Form extends React.Component {
           principal: f,
         }),
       });
-      this.setState({ new2: this.state.new });
+      this.setState({ new2: this.state.new , new:[]});
       n = parseInt(n);
       R = parseInt(R);
       P = parseInt(P);
@@ -87,7 +86,7 @@ export default class Form extends React.Component {
       m1 = parseInt(m1);
       m1++;
       if(!this.state.years.includes(ye1)){
-        this.setState({years:this.state.years.push(ye1)})
+        this.setState({years:this.state.years.push(ye1) })
       }
       console.log(m1, this.state.years);
       if (m1 > 12) {
@@ -100,7 +99,7 @@ export default class Form extends React.Component {
       console.log(y1, q1, P, n, R, i, temp, m1, this.state.years);
     }
     console.log(this.state.years)
-    this.setState({mon:this.state.years})
+    this.setState({mon:this.state.years ,years:[], hybridopen:true})
   };
   Amtchanged = (e) => {
     this.setState({ Lamount: e.target.value });
@@ -119,13 +118,12 @@ export default class Form extends React.Component {
     month1 = month1.toString();
     var dd = month1.concat("-", year1);
     this.setState({ month: month1, year: year1, date: dd, calopen: false });
-    // reset()
   };
   buttonclick=()=>{
     window.location.reload()
   }
   render() {
-    console.log(this.state.Lamount, this.state.date, this.state.mon, this.state.Duration);
+    console.log(this.state.Lamount, this.state.date, this.state.mon, this.state.new);
     return (
       <div id="buttons">
         <form onSubmit={this.getemi} className="form">
@@ -176,7 +174,6 @@ export default class Form extends React.Component {
               defaultValue={this.state.date}
               id="dateinput"
               name="dateinput"
-              onClick={this.calendar1}
             ></input>
             <a onClick={this.calendar1}>
               <img src={calImg} height="40px" width={40} />
@@ -193,17 +190,14 @@ export default class Form extends React.Component {
             Your Monthly EMI will be :{this.state.EMI}
           </p>
           <a  onClick={this.buttonclick} className="btn btn-primary">RESET IT</a>
-          {/* </div> */}
         </form>
         <div>
           <div id="schedule">
             <Hybrid
               msg={this.state.new2}
               EMI={this.state.EMI}
-              // date={this.state.date}
-              // month={this.state.month}
-              // year={this.state.year}
               years={this.state.mon}
+              
             />
           </div>
         </div>

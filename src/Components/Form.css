@@ -1,4 +1,4 @@
-@media screen and (min-width: 150px) and (max-width: 2000px) {
+@media screen and (min-width: 1020px) and (max-width: 2000px) {
   body {
     background-color: lightgreen;
   }
@@ -22,7 +22,7 @@
       "text3 . "
       "text4 . "
       "Check-it . ";
-    margin-left: 30px;
+    margin-left: 230px;
     flex-direction: column;
   }
   #LEC {

@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Loan_EMI_Calculator/static/css/main.3b1e6374.css",
-    "main.js": "/Loan_EMI_Calculator/static/js/main.429aa8b2.js",
+    "main.js": "/Loan_EMI_Calculator/static/js/main.de20281d.js",
     "static/js/787.3da3f83f.chunk.js": "/Loan_EMI_Calculator/static/js/787.3da3f83f.chunk.js",
     "static/media/google-calendar.png": "/Loan_EMI_Calculator/static/media/google-calendar.af5e0819ac19cf3ab7bf.png",
     "static/media/logo.svg": "/Loan_EMI_Calculator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Loan_EMI_Calculator/index.html",
     "main.3b1e6374.css.map": "/Loan_EMI_Calculator/static/css/main.3b1e6374.css.map",
-    "main.429aa8b2.js.map": "/Loan_EMI_Calculator/static/js/main.429aa8b2.js.map",
+    "main.de20281d.js.map": "/Loan_EMI_Calculator/static/js/main.de20281d.js.map",
     "787.3da3f83f.chunk.js.map": "/Loan_EMI_Calculator/static/js/787.3da3f83f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3b1e6374.css",
-    "static/js/main.429aa8b2.js"
+    "static/js/main.de20281d.js"
   ]
 }

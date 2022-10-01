@@ -51,11 +51,11 @@ export default class Form extends React.Component {
     var q1 = q;
     var m1 = this.state.month.toString();
     var ye1 = parseInt(this.state.year);
-    for (let i = 0; i <=this.state.Duration; i++) {
-      var f = y1 - parseInt(q1);
-      temp = Math.round(temp - (f + 1));     // this. will be the remaining amount after that emi
+    for (let i = 0; i <this.state.Duration; i++) {
+      var f = y1 - (q1);
+      temp = (temp - f);     // this. will be the remaining amount after that emi
       console.log("the emi of " + i + "is" + temp, f, q1, y1);
-      this.setState({ msg: P });
+      // this.setState({ msg: P });
       console.log(this.state.new);
       if (temp < 0) {
         temp = 0;
@@ -69,20 +69,18 @@ export default class Form extends React.Component {
         new: this.state.new.push({
           date: c,
           year: ye1,
-          remamt: temp,
+          remamt: Math.round(temp),
           interest: q1,
-          principal: f,
+          principal: Math.round(f),
         }),
       });
       this.setState({ new2: this.state.new , new:[]});
-      n = parseInt(n);
-      R = parseInt(R);
-      P = parseInt(P);
       var r = R / 1200;
       var x = (1 + r) ** n;
+      P = temp;
       q1 = P * r;
       console.log(r, x, q);
-      P = temp;
+      
       m1 = parseInt(m1);
       m1++;
       if(!this.state.years.includes(ye1)){
